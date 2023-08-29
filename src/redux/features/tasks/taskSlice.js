@@ -31,12 +31,16 @@ const tasksSlice = createSlice({
         });
       }
     },
-    removeTask: (state, payload) => {
+    removeTask: (state, { payload }) => {
       state.tasks.filter((item) => item.id !== payload);
+    },
+    updateStatus: (state, { payload }) => {
+      const target = state.tasks.find((item) => item.id === payload.id);
+      target.status = payload.status;
     },
   },
 });
 
-export const { addTask } = tasksSlice.actions;
+export const { addTask, updateStatus } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
